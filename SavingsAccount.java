@@ -1,5 +1,7 @@
 //SavingsAccount.java
 
+import java.util.Scanner;
+
 
 public class SavingsAccount extends CheckingAccount{
     double interestRate;
@@ -13,7 +15,17 @@ public class SavingsAccount extends CheckingAccount{
     } // end constructor
 
     public void setInterestRate(){
-        this.interestRate = CheckingAccount.getDouble();
+        Scanner input = new Scanner(System.in);
+        String sResult = input.nextLine();
+        double result = 0d;
+        try{
+            result = Double.parseDouble(sResult);
+        } catch (Exception e){
+            System.out.println("not a legal input. Changing to 0.05");
+            result = 0.05d;
+        } // end try
+
+        this.interestRate = result;
     } // end setInterestRate
 
     public double getInterestRate(){
@@ -23,4 +35,5 @@ public class SavingsAccount extends CheckingAccount{
     public void calcInterest(){
         this.balance += (this.balance * this.interestRate);
     } // end calcInterest
+
 } // end class
