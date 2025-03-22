@@ -20,13 +20,19 @@ public class CheckingAccount implements HasMenu{
 
    public String menu(){
         //prints a menu, returns a single character string 0, 1, or 2
-        System.out.println("0) Exit");
-        System.out.println("1) Check Balance");
-        System.out.println("2) Make a Deposit");
-        System.out.println("3) Make a Withdrawal");
-        System.out.print("Select an option ");
-        String response = input.nextLine();
-        return response;
+        while(true){
+            System.out.println("0) Exit");
+            System.out.println("1) Check Balance");
+            System.out.println("2) Make a Deposit");
+            System.out.println("3) Make a Withdrawal");
+            System.out.print("Select an option ");
+            String response = input.nextLine();
+            if (response.matches("[0-3]")){
+                return response;
+            } else{
+                System.out.println("Enter a valid option 0-3");
+            } // end if
+        } // end while
     } // end menu
 
    public void start(){
@@ -47,9 +53,6 @@ public class CheckingAccount implements HasMenu{
             } else if (response.equals("0")){
                 System.out.println("Exiting...");
                 keepGoing = false;
-
-            } else {
-                System.out.println("Sorry. I didn't understand");
             } // end if
         } // end while
     } // end constructor

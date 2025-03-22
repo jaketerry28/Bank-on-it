@@ -18,14 +18,20 @@ public class Customer extends User{
 
     // implements HasMenu so obligated to use methods 
     public String menu(){
-        System.out.println("\nCustomer Menu\n");
-        System.out.println("0) Exit");
-        System.out.println("1) Manage Checking Account");
-        System.out.println("2) Manage Savings Account");
-        System.out.println("3) Change PIN");
-        System.out.print("Select an option: ");
-        String response = input.nextLine();
-        return response;
+        while (true){
+            System.out.println("\nCustomer Menu\n");
+            System.out.println("0) Exit");
+            System.out.println("1) Manage Checking Account");
+            System.out.println("2) Manage Savings Account");
+            System.out.println("3) Change PIN");
+            System.out.print("Select an option: ");
+            String response = input.nextLine();
+            if (response.matches("[0-3]")){
+            return response;
+            } else{
+                System.out.println("\nPlease enter a valid option 0-3.");
+            } // end if
+        } // end while
     } // end menu
 
     public void start(){
@@ -42,10 +48,11 @@ public class Customer extends User{
             } else if (response.equals("2")){
                 System.out.println("\nSavings Account\n");
                 System.out.println("Account Menu\n");
-                savings.start();
+                this.savings.start();
 
             } else if (response.equals("3")){
-                System.out.println("\nSorry not implemented yet :)\n");
+                System.out.println("\nEnter a new 4-digit pin.\n");
+                this.changePIN();
 
             } else if (response.equals("0")){
                 System.out.println("\nExiting...");
@@ -57,10 +64,16 @@ public class Customer extends User{
         } // end while
     } // end start
 
-    /*public void changePIN(){
-        
-    } // end changePin
-    */
+    public void changePIN(){
+        String newPIN = input.nextLine();
+        if (newPIN.matches("\\d{4}")){
+            this.setPIN(newPIN);
+            System.out.println("Your new pin is: " + this.getPIN());
+        } else {
+            System.out.println("Please enter only 4 digits.");
+        } // end if
+    } // end changePIN
+    
 
     public String getReport(){
         String checkingReport = this.checking.getBalanceString();
