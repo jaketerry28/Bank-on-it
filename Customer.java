@@ -7,8 +7,8 @@ public class Customer extends User{
     public Customer(){
         this.userName = "Alice";
         this.PIN = "1111";
-        checking = new CheckingAccount();
-        savings = new SavingsAccount();
+        this.checking = new CheckingAccount();
+        this.savings = new SavingsAccount();
     } // end constructor
 
     public Customer(String userName, String PIN){
