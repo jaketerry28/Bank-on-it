@@ -6,10 +6,11 @@ import java.io.*;
 class CustomerList extends ArrayList<Customer> {};
 
 public class Bank implements HasMenu{
-    Scanner input = new Scanner(System.in);
 
-    Admin admin;
-    CustomerList customers = new CustomerList();
+    //private static final Scanner input = new Scanner(System.in);
+
+    private Admin admin;
+    private CustomerList customers = new CustomerList();
 
     public static void main(String[] args){
         new Bank();
@@ -20,9 +21,9 @@ public class Bank implements HasMenu{
         this.admin = new Admin();
 
         // uncomment the next two lines to refresh data
+        this.loadSampleCustomers();
+        this.saveCustomers();
 
-        //this.loadSampleCustomers();
-        //this.saveCustomers();
         this.loadCustomers();
         this.start();
         this.saveCustomers();
@@ -30,10 +31,10 @@ public class Bank implements HasMenu{
 
     public void loadSampleCustomers(){
         customers.add(new Customer("Alice", "1111"));
-        customers.get(0).checking.setBalance(1000);
-        customers.get(0).savings.setBalance(1000);
-        customers.add(new Customer("Bob", "1234"));
-        customers.add(new Customer("Cindy", "2020"));
+        customers.get(0).checking.setBalance(1000.00);
+        customers.get(0).savings.setBalance(1000.00);
+        customers.add(new Customer("Bob", "2222"));
+        customers.add(new Customer("Cindy", "3333"));
     } // end loadSampleCustomers
 
     public void saveCustomers(){
@@ -69,7 +70,6 @@ public class Bank implements HasMenu{
     } // end fullCustomerReport   
 
     public void addUser(){
-        Scanner input = new Scanner(System.in);
 
         System.out.println("\nAdd User:\n");
         System.out.print("Enter new account holder name: ");
@@ -103,12 +103,13 @@ public class Bank implements HasMenu{
 
         for(Customer c: customers){
             if (c.loginARGS(userNameIn, pinIN)){
+                System.out.println("Login Successful");
                 currentCustomer = c;
             } // end if
         } // end for
 
         if (currentCustomer == null){
-            System.out.println("\nNo customer found.");
+            System.out.println("\nIncorrect Username or PIN.\n");
         
         } else {
             currentCustomer.start();
@@ -138,8 +139,6 @@ public class Bank implements HasMenu{
     } // end constructor
 
    public String menu(){
-        Scanner input = new Scanner(System.in);
-
         //prints a menu, returns a single character string 0, 1, or 2
         while(true){
             System.out.println("0) Exit");

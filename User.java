@@ -1,27 +1,33 @@
 //User.java
 
-import java.util.*;
+//import java.util.*;
 import java.io.*;
 
 public abstract class User implements HasMenu, Serializable{
-    String userName;
-    String PIN;
+
+    //private static final Scanner input = new Scanner(System.in);
+
+    private String userName;
+    private String PIN;
 
     public boolean login(){
-        Scanner input = new Scanner(System.in);
         System.out.print("Username: ");
         String inputUserName = input.nextLine();
         System.out.print("PIN: ");
         String inputPIN = input.nextLine();
-        return loginARGS(inputUserName, inputPIN);
-    } // end login 
-
-    public boolean loginARGS(String inputUserName, String inputPIN){
-        if (this.userName.equals(inputUserName) && this.PIN.equals(inputPIN)){
+        if (loginARGS(inputUserName, inputPIN)){
             System.out.println("\nLogin Successful");
             return true;
         } else {
             System.out.println("\nLogin Failed");
+            return false;
+        }
+    } // end login 
+
+    public boolean loginARGS(String inputUserName, String inputPIN){
+        if (this.userName.equals(inputUserName) && this.PIN.equals(inputPIN)){
+            return true;
+        } else {
             return false;
         } // end if
     } // end login

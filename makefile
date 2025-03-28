@@ -31,7 +31,7 @@ testChecking: CheckingAccount.class
 testSavings: SavingsAccount.class
 	java SavingsAccount
 
-testBank: Bank.class
+testBank: Bank.class Customer.class Admin.class
 	java Bank
 
 clean:

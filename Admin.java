@@ -1,19 +1,17 @@
 //Admin.java
-import java.util.*;
 
 public class Admin extends User{
-
+    
     public static void main(String[] args){
         new Admin();
     } // end main
 
     public Admin(){
-        this.userName = "admin";
-        this.PIN = "0000";
+        this.setUserName("admin"); // admin username
+        this.setPIN("0000"); // admin pin
     } // end constructor
 
     public String menu(){
-        Scanner input = new Scanner(System.in);
         boolean keepGoing = true;
         while (keepGoing){
             System.out.println("\nAdmin Menu\n");

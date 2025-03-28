@@ -1,28 +1,41 @@
 //Customer.java
-import java.util.*;
+
+//import java.util.*;
 import java.io.*;
 
 public class Customer extends User implements Serializable {
-    CheckingAccount checking;
-    SavingsAccount savings;
+    //private static final Scanner input = new Scanner(System.in);
+
+    protected CheckingAccount checking;
+    protected SavingsAccount savings;
+
+    public static void main(String[] args){
+        new Customer();
+        /*
+        Customer c = new Customer();
+        System.out.println("\n");
+        if (c.login()){
+            c.start();
+        }
+        */
+    } // end main
 
     public Customer(){
-        this.userName = "";
-        this.PIN = "";
+        this.setUserName("");
+        this.setPIN("");
         this.checking = new CheckingAccount();
         this.savings = new SavingsAccount();
     } // end constructor
 
     public Customer(String userName, String PIN){
-        this.userName = userName;
-        this.PIN = PIN;
+        this.setUserName(userName);
+        this.setPIN(PIN);
         this.checking = new CheckingAccount();
         this.savings = new SavingsAccount();
     } // end constructor
 
     // implements HasMenu so obligated to use methods 
     public String menu(){
-        Scanner input = new Scanner(System.in);
         boolean keepGoing = true;
         while (keepGoing){
             System.out.println("\nCustomer Menu\n");
@@ -72,7 +85,6 @@ public class Customer extends User implements Serializable {
     } // end start
 
     public void changePIN(){
-        Scanner input = new Scanner(System.in);
         String newPIN = input.nextLine();
         if (newPIN.matches("\\d{4}")){
             this.setPIN(newPIN);
@@ -89,13 +101,4 @@ public class Customer extends User implements Serializable {
 
         return "Checkings " + checkingReport + " Savings: " + savingsReport;
     } // end getReport
-
-    public static void main(String[] args){
-        Customer c = new Customer();
-        System.out.println("\n");
-        if (c.login()){
-            c.start();
-        }
-        
-    } // end main
 } // end class

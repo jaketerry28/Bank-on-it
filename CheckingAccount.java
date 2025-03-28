@@ -1,25 +1,27 @@
 //CheckingAccount.java
 
-import java.util.*;
+//import java.util.*;
 import java.io.*;
 
 public class CheckingAccount implements HasMenu, Serializable{
-    double balance;
+
+    //private static final Scanner input = new Scanner(System.in);
+
+    private double balance;
 
     public static void main(String[] args){
         new CheckingAccount();
     } // end main
 
     public CheckingAccount(){
-        this.balance = 0;
+        this.setBalance(0);
     } // end constructor
 
     public CheckingAccount(double balance){
-        this.balance = balance;
+        this.setBalance(balance);
     } // end constructor
 
    public String menu(){
-        Scanner input = new Scanner(System.in);
 
         //prints a menu, returns a single character string 0, 1, or 2
         boolean keepGoing = true;
@@ -47,13 +49,13 @@ public class CheckingAccount implements HasMenu, Serializable{
             String response = menu();
 
             if (response.equals("1")){
-                System.out.println("\nAccount Balance: " +getBalanceString() + "\n");
+                this.checkBalance();
 
             } else if (response.equals("2")){
-                makeDeposit();
+                this.makeDeposit();
 
             } else if (response.equals("3")){
-                makeWithdrawal();
+                this.makeWithdrawal();
 
             } else if (response.equals("0")){
                 System.out.println("Exiting...");
@@ -72,13 +74,12 @@ public class CheckingAccount implements HasMenu, Serializable{
     } // end getBalanceString
 
     private double getDouble(){
-        Scanner input = new Scanner(System.in);
         String sResult = input.nextLine();
         double result = 0d;
         try{
             result = Double.parseDouble(sResult);
         } catch (Exception e){
-            System.out.println("not a legal input. Changing to 0");
+            System.out.println("\nNot a legal input. Changing to 0");
             result = 0d;
         } // end try
         return result;
@@ -89,7 +90,7 @@ public class CheckingAccount implements HasMenu, Serializable{
     } // end setBalance
 
    public void checkBalance(){
-        System.out.println("Your current balance is: " + getBalanceString());
+        System.out.println("\nAccount Balance: " +getBalanceString() + "\n");
     } // end checkBalance
 
     public void makeDeposit(){
