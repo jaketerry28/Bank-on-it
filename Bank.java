@@ -82,7 +82,12 @@ public class Bank implements HasMenu{
     } // end addUser
 
     public void addInterest(){
-
+        System.out.println("Apply Interest");
+        for (Customer c: customers){
+            c.savings.calcInterest();
+            System.out.println("\nUser: " + c.getUserName() +", New Balance: " + c.savings.getBalanceString()
+            + ", Applied Interest Rate: " + c.savings.getInterestRate());
+        } // end for
     } // end addInterest  
 
     public void loginAsCustomer(){
@@ -146,6 +151,7 @@ public class Bank implements HasMenu{
                 
             } else if (response.equals("3")){
                 System.out.println("\nApply Interest:\n");
+                this.addInterest();
 
             } else if (response.equals("0")){
                 System.out.println("\nExiting...\n");
