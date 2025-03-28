@@ -104,6 +104,7 @@ public class Bank implements HasMenu{
     } // end menu
 
     public void adminStart(){
+        Scanner input = new Scanner(System.in);
         boolean keepGoing = true;
         while (keepGoing){
             String response = admin.menu();
@@ -116,6 +117,11 @@ public class Bank implements HasMenu{
 
             } else if (response.equals("2")){
                 System.out.println("\nAdd User:\n");
+                System.out.print("Enter new account holder name: ");
+                String name = input.nextLine();
+                System.out.print("Create a 4 digit PIN: ");
+                String PIN = input.nextLine();
+                customers.add(new Customer(name, PIN));
 
             } else if (response.equals("3")){
                 System.out.println("\nApply Interest:\n");
