@@ -3,8 +3,7 @@
 import java.util.*;
 import java.io.*;
 
-public class CheckingAccount implements HasMenu{
-    Scanner input = new Scanner(System.in);
+public class CheckingAccount implements HasMenu, Serializable{
     double balance;
 
     public static void main(String[] args){
@@ -20,6 +19,8 @@ public class CheckingAccount implements HasMenu{
     } // end constructor
 
    public String menu(){
+        Scanner input = new Scanner(System.in);
+
         //prints a menu, returns a single character string 0, 1, or 2
         boolean keepGoing = true;
         while(keepGoing){
@@ -66,7 +67,7 @@ public class CheckingAccount implements HasMenu{
     } // end getBalance
 
    public String getBalanceString(){
-        String balanceString = String.valueOf(balance);
+        String balanceString = String.format("$%.2f", balance);
         return balanceString;
     } // end getBalanceString
 

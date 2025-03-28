@@ -21,7 +21,7 @@ public class SavingsAccount extends CheckingAccount{
         try{
             result = Double.parseDouble(sResult);
         } catch (Exception e){
-            System.out.println("not a legal input. Changing to 0.05");
+            System.out.println("\nNot a legal input. Changing to 5%.\n");
             result = 0.05d;
         } // end try
 

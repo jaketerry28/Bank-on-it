@@ -1,4 +1,5 @@
 //Admin.java
+import java.util.*;
 
 public class Admin extends User{
 
@@ -12,6 +13,7 @@ public class Admin extends User{
     } // end constructor
 
     public String menu(){
+        Scanner input = new Scanner(System.in);
         boolean keepGoing = true;
         while (keepGoing){
             System.out.println("\nAdmin Menu\n");

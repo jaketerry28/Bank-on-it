@@ -1,10 +1,9 @@
 //User.java
 
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public abstract class User implements HasMenu{
-    Scanner input = new Scanner(System.in);
-
+public abstract class User implements HasMenu, Serializable{
     String userName;
     String PIN;
 

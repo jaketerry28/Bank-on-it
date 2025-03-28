@@ -1,32 +1,63 @@
 //Bank.java
 
 import java.util.*;
+import java.io.*;
 
 class CustomerList extends ArrayList<Customer> {};
 
 public class Bank implements HasMenu{
-    Scanner input = new Scanner(System.in);
     Admin admin;
     CustomerList customers = new CustomerList();
 
-
     public static void main(String[] args){
         new Bank();
-        
     }
+
     public Bank(){
+
         this.admin = new Admin();
-        this.start();
 
         // uncomment the next two lines to refresh data
 
-        /*this.loadSampleCustomers();
+        //this.loadSampleCustomers();
         //this.saveCustomers();
         this.loadCustomers();
         this.start();
         this.saveCustomers();
-        */
-  } // end constructor
+    } // end constructor
+
+    public void loadSampleCustomers(){
+        customers.add(new Customer("Alice", "1111"));
+        customers.get(0).checking.setBalance(1000);
+        customers.get(0).savings.setBalance(1000);
+        customers.add(new Customer("Bob", "1234"));
+        customers.add(new Customer("Cindy", "2020"));
+    } // end loadSampleCustomers
+
+    public void saveCustomers(){
+        try {
+         FileOutputStream fo = new FileOutputStream("customerArray.dat");
+         ObjectOutputStream obOut = new ObjectOutputStream(fo);
+         obOut.writeObject(customers);
+         obOut.close();
+         fo.close();
+        } catch (Exception e){
+         System.out.println(e.getMessage());
+        } // end try
+    } // end saveCustomers
+
+     public void loadCustomers(){
+       try {
+         FileInputStream fIn = new FileInputStream("customerArray.dat");
+         ObjectInputStream obIn = new ObjectInputStream(fIn);
+         customers = (CustomerList)obIn.readObject();
+         System.out.println(customers.get(0).getReport());
+         obIn.close();
+         fIn.close();
+        }catch (Exception e){
+         System.out.println(e.getMessage());
+        } // end try
+    } // end loadCritter        
 
    public void start(){
         boolean keepGoing = true;
@@ -55,6 +86,8 @@ public class Bank implements HasMenu{
     } // end constructor
 
    public String menu(){
+        Scanner input = new Scanner(System.in);
+
         //prints a menu, returns a single character string 0, 1, or 2
         while(true){
             System.out.println("0) Exit");
@@ -77,7 +110,9 @@ public class Bank implements HasMenu{
 
             if (response.equals("1")){
                 System.out.println("\nFull Customer Report:\n");
-                admin.getReport();
+                for (Customer c: customers){
+                    System.out.print("User: " + c.getUserName() + ", " + c.getReport() + "\n");
+                }
 
             } else if (response.equals("2")){
                 System.out.println("\nAdd User:\n");

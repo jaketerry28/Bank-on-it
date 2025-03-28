@@ -2,13 +2,13 @@
 import java.util.*;
 import java.io.*;
 
-public class Customer extends User{
+public class Customer extends User implements Serializable {
     CheckingAccount checking;
     SavingsAccount savings;
 
     public Customer(){
-        this.userName = "Alice";
-        this.PIN = "1111";
+        this.userName = "";
+        this.PIN = "";
         this.checking = new CheckingAccount();
         this.savings = new SavingsAccount();
     } // end constructor
@@ -22,7 +22,9 @@ public class Customer extends User{
 
     // implements HasMenu so obligated to use methods 
     public String menu(){
-        while (true){
+        Scanner input = new Scanner(System.in);
+        boolean keepGoing = true;
+        while (keepGoing){
             System.out.println("\nCustomer Menu\n");
             System.out.println("0) Exit");
             System.out.println("1) Manage Checking Account");
@@ -36,6 +38,7 @@ public class Customer extends User{
                 System.out.println("\nPlease enter a valid option 0-3.");
             } // end if
         } // end while
+        return "0"; // for java error
     } // end menu
 
     public void start(){
@@ -69,6 +72,7 @@ public class Customer extends User{
     } // end start
 
     public void changePIN(){
+        Scanner input = new Scanner(System.in);
         String newPIN = input.nextLine();
         if (newPIN.matches("\\d{4}")){
             this.setPIN(newPIN);
@@ -83,7 +87,7 @@ public class Customer extends User{
         String checkingReport = this.checking.getBalanceString();
         String savingsReport = this.savings.getBalanceString();
 
-        return "Checking " + checkingReport + " Savings: " + savingsReport;
+        return "Checkings " + checkingReport + " Savings: " + savingsReport;
     } // end getReport
 
     public static void main(String[] args){
