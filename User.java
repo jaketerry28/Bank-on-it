@@ -5,8 +5,8 @@ import java.util.Scanner;
 public abstract class User implements HasMenu{
     Scanner input = new Scanner(System.in);
 
-    String userName = "Alice";
-    String PIN = "1111";
+    String userName;
+    String PIN;
 
     public boolean login(){
         Scanner input = new Scanner(System.in);

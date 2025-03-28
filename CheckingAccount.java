@@ -1,6 +1,7 @@
 //CheckingAccount.java
 
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class CheckingAccount implements HasMenu{
     Scanner input = new Scanner(System.in);
@@ -20,7 +21,8 @@ public class CheckingAccount implements HasMenu{
 
    public String menu(){
         //prints a menu, returns a single character string 0, 1, or 2
-        while(true){
+        boolean keepGoing = true;
+        while(keepGoing){
             System.out.println("0) Exit");
             System.out.println("1) Check Balance");
             System.out.println("2) Make a Deposit");
@@ -28,11 +30,13 @@ public class CheckingAccount implements HasMenu{
             System.out.print("Select an option ");
             String response = input.nextLine();
             if (response.matches("[0-3]")){
+                keepGoing = false;
                 return response;
             } else{
                 System.out.println("Enter a valid option 0-3");
             } // end if
-        } // end while
+        } // end while 
+        return "0"; // to satisfy java error
     } // end menu
 
    public void start(){

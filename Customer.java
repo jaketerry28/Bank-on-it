@@ -1,4 +1,6 @@
 //Customer.java
+import java.util.*;
+import java.io.*;
 
 public class Customer extends User{
     CheckingAccount checking;
@@ -14,6 +16,8 @@ public class Customer extends User{
     public Customer(String userName, String PIN){
         this.userName = userName;
         this.PIN = PIN;
+        this.checking = new CheckingAccount();
+        this.savings = new SavingsAccount();
     } // end constructor
 
     // implements HasMenu so obligated to use methods 
