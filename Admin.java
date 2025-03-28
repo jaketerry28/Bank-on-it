@@ -27,7 +27,7 @@ public class Admin extends User{
                 keepGoing = false;
                 return response;
             } else{
-                System.out.println("\nPlease enter a valid option 0-3.");
+                System.out.println("\nPlease enter a valid option 0-3.\n");
             } // end if
         } // end while
         return "0"; // satisfy java error
