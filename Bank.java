@@ -6,6 +6,8 @@ import java.io.*;
 class CustomerList extends ArrayList<Customer> {};
 
 public class Bank implements HasMenu{
+    Scanner input = new Scanner(System.in);
+
     Admin admin;
     CustomerList customers = new CustomerList();
 
@@ -91,7 +93,26 @@ public class Bank implements HasMenu{
     } // end addInterest  
 
     public void loginAsCustomer(){
+        System.out.println("\nCustomer Login:\n");
+        System.out.print("Username: ");
+        String userNameIn = input.nextLine();
+        System.out.print("PIN: ");
+        String pinIN = input.nextLine();
 
+        Customer currentCustomer = null;
+
+        for(Customer c: customers){
+            if (c.loginARGS(userNameIn, pinIN)){
+                currentCustomer = c;
+            } // end if
+        } // end for
+
+        if (currentCustomer == null){
+            System.out.println("\nNo customer found.");
+        
+        } else {
+            currentCustomer.start();
+        } // end for
     } // end loginAsCustomer
 
    public void start(){
@@ -107,12 +128,8 @@ public class Bank implements HasMenu{
                 }
 
             } else if (response.equals("2")){
-                System.out.println("\nCustomer Login:\n");
-                for (Customer c: customers){
-                    if (c.login()){
-                        c.start();
-                    } // end nested if 
-                } // end for 
+                this.loginAsCustomer();
+
             } else if (response.equals("0")){
                 System.out.println("\nExiting...\n");
                 keepGoing = false;
