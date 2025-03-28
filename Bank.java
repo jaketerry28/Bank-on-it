@@ -134,7 +134,6 @@ public class Bank implements HasMenu{
     } // end menu
 
     public void adminStart(){
-        Scanner input = new Scanner(System.in);
         boolean keepGoing = true;
         while (keepGoing){
             String response = admin.menu();
