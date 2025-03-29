@@ -1,6 +1,6 @@
 # Bank-on-it
 ATM 
-![ULM Screenshot](ULM.png)
+![ULM Screenshot](BankULM.png)
 
  ## HasMenu
 
